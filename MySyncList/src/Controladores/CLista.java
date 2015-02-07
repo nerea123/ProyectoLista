@@ -29,7 +29,7 @@ public class CLista {
         lista = new Lista();
         setButtonsNames();
         setActionButtons();
-        Item t = new Item();
+        /*Item t = new Item();
         
         t.setDescripcion("preba");
         t.setCheck_item(true);
@@ -42,7 +42,7 @@ public class CLista {
         lista.getItems().add(t);
         lista.getItems().add(t2);
         vLista.getLista().setListData(lista.getItems().toArray());
-        vLista.getLista().setCellRenderer(new MyListCellRenderer());
+        vLista.getLista().setCellRenderer(new MyListCellRenderer());*/
         vLista.setVisible(true);
     }
     
