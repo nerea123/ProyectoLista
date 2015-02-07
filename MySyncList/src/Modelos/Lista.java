@@ -64,5 +64,17 @@ public class Lista {
         this.items = items;
     }
     
+    public String toString() {
+        
+        String aux="";
+        aux+=descripcion+"|";
+        for(int i =0;i<items.size();i++){
+            aux +=items.get(i).getDescripcion()+"|";
+            aux +=items.get(i).getCantidad()+"|";
+            aux +=items.get(i).isCheck_item()+";";
+        }
+        return aux;
+    }
+    
     
 }

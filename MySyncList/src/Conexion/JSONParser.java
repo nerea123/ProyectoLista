@@ -45,12 +45,15 @@ public class JSONParser {
             if(method == "POST"){
                 // request method is POST
                 // defaultHttpClient
+                System.out.println("url es: "+url);
+                
                 DefaultHttpClient httpClient = new DefaultHttpClient();
                 HttpPost httpPost = new HttpPost(url);
                 httpPost.setEntity(new UrlEncodedFormEntity(params));
                 HttpResponse httpResponse = httpClient.execute(httpPost);
                 HttpEntity httpEntity = httpResponse.getEntity();
                 is = httpEntity.getContent();
+                
             }else if(method == "GET"){
             // request method is GET
                 DefaultHttpClient httpClient = new DefaultHttpClient();
@@ -75,11 +78,12 @@ public class JSONParser {
             String line = null;
             while ((line = reader.readLine()) != null) {
             sb.append(line + "\n ");
+
         }
             
         is.close();
         json = sb.toString();
-        
+        System.out.println(json);
         } catch (Exception e) {
             System.out.println( "Error converting result " + e.toString());
         }

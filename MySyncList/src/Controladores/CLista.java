@@ -29,7 +29,7 @@ public class CLista {
         lista = new Lista();
         setButtonsNames();
         setActionButtons();
-        /*Item t = new Item();
+        Item t = new Item();
         
         t.setDescripcion("preba");
         t.setCheck_item(true);
@@ -42,7 +42,8 @@ public class CLista {
         lista.getItems().add(t);
         lista.getItems().add(t2);
         vLista.getLista().setListData(lista.getItems().toArray());
-        vLista.getLista().setCellRenderer(new MyListCellRenderer());*/
+        vLista.getLista().setCellRenderer(new MyListCellRenderer());
+        System.out.println(lista.toString());
         vLista.setVisible(true);
     }
     
@@ -77,11 +78,11 @@ public class CLista {
     }
     
     private void setActionButtons(){
-        vLista.getAbrir().addActionListener(new MyActionListener(vLista.getAbrir()));
-        vLista.getAnadir().addActionListener(new MyActionListener(vLista.getAnadir()));
-        vLista.getEliminar().addActionListener(new MyActionListener(vLista.getEliminar()));
-        vLista.getSync().addActionListener(new MyActionListener(vLista.getSync()));
-        vLista.getGuardar().addActionListener(new MyActionListener(vLista.getGuardar()));
+        vLista.getAbrir().addActionListener(new MyActionListener(vLista.getAbrir(), vLista.getLista()));
+        vLista.getAnadir().addActionListener(new MyActionListener(vLista.getAnadir(), vLista.getLista()));
+        vLista.getEliminar().addActionListener(new MyActionListener(vLista.getEliminar(), vLista.getLista()));
+        vLista.getSync().addActionListener(new MyActionListener(vLista.getSync(), vLista.getLista()));
+        vLista.getGuardar().addActionListener(new MyActionListener(vLista.getGuardar(), vLista.getLista()));
     }
     
     private void setButtonsNames(){
