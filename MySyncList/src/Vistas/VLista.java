@@ -34,17 +34,24 @@ public class VLista extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JToolBar.Separator();
         abrir = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
-        guardar = new javax.swing.JToggleButton();
+        guardar = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         jSeparator5 = new javax.swing.JToolBar.Separator();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        anadir = new javax.swing.JButton();
+        eliminar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lista = new javax.swing.JList();
+        jLabel1 = new javax.swing.JLabel();
+        cantidad = new javax.swing.JComboBox();
+        delete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jToolBar1.setRollover(true);
 
-        sync.setText("sync");
+        sync.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sync.png"))); // NOI18N
+        sync.setToolTipText("Sincronizar");
         sync.setFocusable(false);
         sync.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         sync.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -54,7 +61,8 @@ public class VLista extends javax.swing.JFrame {
         jSeparator4.setSeparatorSize(new java.awt.Dimension(20, 20));
         jToolBar1.add(jSeparator4);
 
-        abrir.setText("Abrir");
+        abrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/open.png"))); // NOI18N
+        abrir.setToolTipText("Abrir");
         abrir.setFocusable(false);
         abrir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         abrir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -64,7 +72,8 @@ public class VLista extends javax.swing.JFrame {
         jSeparator3.setSeparatorSize(new java.awt.Dimension(20, 20));
         jToolBar1.add(jSeparator3);
 
-        guardar.setText("Guardar");
+        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
+        guardar.setToolTipText("Guardar");
         guardar.setFocusable(false);
         guardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         guardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -78,29 +87,59 @@ public class VLista extends javax.swing.JFrame {
         jSeparator5.setSeparatorSize(new java.awt.Dimension(20, 20));
         jToolBar1.add(jSeparator5);
 
-        jButton3.setText("jButton3");
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton3);
+        anadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+        anadir.setToolTipText("Añadir item");
+        anadir.setFocusable(false);
+        anadir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        anadir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(anadir);
 
-        jButton4.setText("jButton4");
-        jButton4.setFocusable(false);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton4);
+        eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/el.PNG"))); // NOI18N
+        eliminar.setToolTipText("Eliminar item seleccionado");
+        eliminar.setFocusable(false);
+        eliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        eliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(eliminar);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
+        jButton1.setToolTipText("Editar item seleccionado");
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton1);
+
+        jScrollPane1.setViewportView(lista);
+
+        jLabel1.setText("Cantidad");
+
+        delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/del.png"))); // NOI18N
+        delete.setText("Eliminar lista");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(delete))
+            .addComponent(jScrollPane1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 253, Short.MAX_VALUE))
+                .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(delete, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cantidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -111,7 +150,9 @@ public class VLista extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -154,15 +195,156 @@ public class VLista extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton abrir;
-    private javax.swing.JToggleButton guardar;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton anadir;
+    private javax.swing.JComboBox cantidad;
+    private javax.swing.JButton delete;
+    private javax.swing.JButton eliminar;
+    private javax.swing.JButton guardar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JToolBar.Separator jSeparator5;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JList lista;
     private javax.swing.JButton sync;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the abrir
+     */
+    public javax.swing.JButton getAbrir() {
+        return abrir;
+    }
+
+    /**
+     * @param abrir the abrir to set
+     */
+    public void setAbrir(javax.swing.JButton abrir) {
+        this.abrir = abrir;
+    }
+
+    /**
+     * @return the anadir
+     */
+    public javax.swing.JButton getAnadir() {
+        return anadir;
+    }
+
+    /**
+     * @param anadir the anadir to set
+     */
+    public void setAnadir(javax.swing.JButton anadir) {
+        this.anadir = anadir;
+    }
+
+    /**
+     * @return the eliminar
+     */
+    public javax.swing.JButton getEliminar() {
+        return eliminar;
+    }
+
+    /**
+     * @param eliminar the eliminar to set
+     */
+    public void setEliminar(javax.swing.JButton eliminar) {
+        this.eliminar = eliminar;
+    }
+
+    /**
+     * @param guardar the guardar to set
+     */
+    public void setGuardar(javax.swing.JToggleButton guardar) {
+        this.setGuardar(guardar);
+    }
+
+    /**
+     * @return the jPanel1
+     */
+    public javax.swing.JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    /**
+     * @param jPanel1 the jPanel1 to set
+     */
+    public void setjPanel1(javax.swing.JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    
+    /**
+     * @return the sync
+     */
+    public javax.swing.JButton getSync() {
+        return sync;
+    }
+
+    /**
+     * @param sync the sync to set
+     */
+    public void setSync(javax.swing.JButton sync) {
+        this.sync = sync;
+    }
+    
+       /**
+     * @return the sync
+     */
+    public javax.swing.JButton getGuardar() {
+        return guardar;
+    }
+
+
+    /**
+     * @param guardar the guardar to set
+     */
+    public void setGuardar(javax.swing.JButton guardar) {
+        this.guardar = guardar;
+    }
+
+    /**
+     * @return the cantidad
+     */
+    public javax.swing.JComboBox getCantidad() {
+        return cantidad;
+    }
+
+    /**
+     * @param cantidad the cantidad to set
+     */
+    public void setCantidad(javax.swing.JComboBox cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    /**
+     * @return the delete
+     */
+    public javax.swing.JButton getDelete() {
+        return delete;
+    }
+
+    /**
+     * @param delete the delete to set
+     */
+    public void setDelete(javax.swing.JButton delete) {
+        this.delete = delete;
+    }
+
+    /**
+     * @return the lista
+     */
+    public javax.swing.JList getLista() {
+        return lista;
+    }
+
+    /**
+     * @param lista the lista to set
+     */
+    public void setLista(javax.swing.JList lista) {
+        this.lista = lista;
+    }
 }

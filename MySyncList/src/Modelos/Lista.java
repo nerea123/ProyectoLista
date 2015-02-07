@@ -17,6 +17,10 @@ public class Lista {
     private int cod;
     private String descripcion;
     private ArrayList <Item> items;
+    
+    public Lista(){
+        items = new ArrayList<>();
+    }
 
     /**
      * @return the cod

@@ -13,6 +13,7 @@ package Modelos;
 public class Item {
     private String descripcion;
     private int cantidad;
+    private boolean check_item;
 
     /**
      * @return the descripcion
@@ -40,5 +41,19 @@ public class Item {
      */
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    /**
+     * @return the check_item
+     */
+    public boolean isCheck_item() {
+        return check_item;
+    }
+
+    /**
+     * @param check_item the check_item to set
+     */
+    public void setCheck_item(boolean check_item) {
+        this.check_item = check_item;
     }
 }

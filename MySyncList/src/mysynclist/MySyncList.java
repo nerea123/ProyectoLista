@@ -6,6 +6,8 @@
 
 package mysynclist;
 
+import Controladores.CLista;
+
 /**
  *
  * @author nerea
@@ -16,7 +18,7 @@ public class MySyncList {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        CLista.getInstance();
     }
     
 }

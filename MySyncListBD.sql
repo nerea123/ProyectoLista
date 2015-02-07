@@ -10,3 +10,5 @@ CREATE TABLE Item (
 	FOREIGN KEY (cod_lista) REFERENCES Lista(cod)
 );
 
+ALTER TABLE Item ADD check_item boolean default 0;
+
