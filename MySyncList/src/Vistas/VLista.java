@@ -32,6 +32,8 @@ public class VLista extends javax.swing.JFrame {
         jToolBar1 = new javax.swing.JToolBar();
         sync = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JToolBar.Separator();
+        jButton2 = new javax.swing.JButton();
+        jSeparator6 = new javax.swing.JToolBar.Separator();
         abrir = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
         guardar = new javax.swing.JButton();
@@ -39,12 +41,13 @@ public class VLista extends javax.swing.JFrame {
         jSeparator5 = new javax.swing.JToolBar.Separator();
         anadir = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        editar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lista = new javax.swing.JList();
         jLabel1 = new javax.swing.JLabel();
-        cantidad = new javax.swing.JComboBox();
         delete = new javax.swing.JButton();
+        cantidad = new javax.swing.JTextField();
+        nomLista = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,6 +63,17 @@ public class VLista extends javax.swing.JFrame {
         jSeparator4.setPreferredSize(new java.awt.Dimension(20, 20));
         jSeparator4.setSeparatorSize(new java.awt.Dimension(20, 20));
         jToolBar1.add(jSeparator4);
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/new.png"))); // NOI18N
+        jButton2.setToolTipText("Lista nueva");
+        jButton2.setFocusable(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton2);
+
+        jSeparator6.setPreferredSize(new java.awt.Dimension(20, 20));
+        jSeparator6.setSeparatorSize(new java.awt.Dimension(20, 20));
+        jToolBar1.add(jSeparator6);
 
         abrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/open.png"))); // NOI18N
         abrir.setToolTipText("Abrir");
@@ -101,12 +115,12 @@ public class VLista extends javax.swing.JFrame {
         eliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(eliminar);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
-        jButton1.setToolTipText("Editar item seleccionado");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton1);
+        editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
+        editar.setToolTipText("Editar item seleccionado");
+        editar.setFocusable(false);
+        editar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        editar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(editar);
 
         jScrollPane1.setViewportView(lista);
 
@@ -114,6 +128,8 @@ public class VLista extends javax.swing.JFrame {
 
         delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/del.png"))); // NOI18N
         delete.setText("Eliminar lista");
+
+        nomLista.setText("Lista sin nombre");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -123,22 +139,28 @@ public class VLista extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(delete))
             .addComponent(jScrollPane1)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(nomLista, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nomLista, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(delete, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cantidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(delete, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
 
@@ -196,11 +218,12 @@ public class VLista extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton abrir;
     private javax.swing.JButton anadir;
-    private javax.swing.JComboBox cantidad;
+    private javax.swing.JTextField cantidad;
     private javax.swing.JButton delete;
+    private javax.swing.JButton editar;
     private javax.swing.JButton eliminar;
     private javax.swing.JButton guardar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -208,8 +231,10 @@ public class VLista extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JToolBar.Separator jSeparator5;
+    private javax.swing.JToolBar.Separator jSeparator6;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JList lista;
+    private javax.swing.JLabel nomLista;
     private javax.swing.JButton sync;
     // End of variables declaration//GEN-END:variables
 
@@ -309,14 +334,14 @@ public class VLista extends javax.swing.JFrame {
     /**
      * @return the cantidad
      */
-    public javax.swing.JComboBox getCantidad() {
+    public javax.swing.JTextField getCantidad() {
         return cantidad;
     }
 
     /**
      * @param cantidad the cantidad to set
      */
-    public void setCantidad(javax.swing.JComboBox cantidad) {
+    public void setCantidad(javax.swing.JTextField cantidad) {
         this.cantidad = cantidad;
     }
 
@@ -346,5 +371,33 @@ public class VLista extends javax.swing.JFrame {
      */
     public void setLista(javax.swing.JList lista) {
         this.lista = lista;
+    }
+
+    /**
+     * @return the nomLista
+     */
+    public javax.swing.JLabel getNomLista() {
+        return nomLista;
+    }
+
+    /**
+     * @param nomLista the nomLista to set
+     */
+    public void setNomLista(javax.swing.JLabel nomLista) {
+        this.nomLista = nomLista;
+    }
+
+    /**
+     * @return the editar
+     */
+    public javax.swing.JButton getEditar() {
+        return editar;
+    }
+
+    /**
+     * @param editar the editar to set
+     */
+    public void setEditar(javax.swing.JButton editar) {
+        this.editar = editar;
     }
 }

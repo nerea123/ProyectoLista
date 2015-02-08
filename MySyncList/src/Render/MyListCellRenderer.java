@@ -43,7 +43,7 @@ public class MyListCellRenderer implements ListCellRenderer {
             renderer.setForeground(foreground);
           }
           
-          if (item.isCheck_item()) {
+          if (item.isCheck_item() == 1) {
             renderer.setIcon(iconOk);
           }
           else

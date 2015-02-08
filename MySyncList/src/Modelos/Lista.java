@@ -17,9 +17,11 @@ public class Lista {
     private int cod;
     private String descripcion;
     private ArrayList <Item> items;
+    private boolean modificada;
     
     public Lista(){
         items = new ArrayList<>();
+        modificada = false;
     }
 
     /**
@@ -67,13 +69,36 @@ public class Lista {
     public String toString() {
         
         String aux="";
+        aux+=cod+"|";
         aux+=descripcion+"|";
         for(int i =0;i<items.size();i++){
-            aux +=items.get(i).getDescripcion()+"|";
-            aux +=items.get(i).getCantidad()+"|";
-            aux +=items.get(i).isCheck_item()+";";
+            if(items.get(i).isCambiado()){
+                aux +=items.get(i).getDescripcion()+"|";
+                aux +=items.get(i).getCantidad()+"|";
+                aux +=items.get(i).isCheck_item()+"<";
+                if(modificada)
+                    aux +=items.get(i).getCod()+"<";
+            }
         }
         return aux;
+    }
+    
+    public void addItem(Item t){
+        items.add(t);
+    }
+
+    /**
+     * @return the modificada
+     */
+    public boolean isModificada() {
+        return modificada;
+    }
+
+    /**
+     * @param modificada the modificada to set
+     */
+    public void setModificada(boolean modificada) {
+        this.modificada = modificada;
     }
     
     

@@ -14,6 +14,8 @@ import Vistas.VLista;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.ListModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -27,23 +29,28 @@ public class CLista {
     private CLista() {
         vLista = new VLista();
         lista = new Lista();
+        lista.setDescripcion(vLista.getNomLista().getText());
+        lista.setCod(0);
         setButtonsNames();
         setActionButtons();
         Item t = new Item();
         
         t.setDescripcion("preba");
-        t.setCheck_item(true);
+        t.setCantidad(1);
+        t.setCheck_item(1);
         
          Item t2 = new Item();
         
-        t2.setDescripcion("preba");
-        t2.setCheck_item(false);
+        t2.setDescripcion("preba2");
+        t2.setCantidad(4);
+        t2.setCheck_item(0);
         
         lista.getItems().add(t);
         lista.getItems().add(t2);
         vLista.getLista().setListData(lista.getItems().toArray());
         vLista.getLista().setCellRenderer(new MyListCellRenderer());
         System.out.println(lista.toString());
+        vLista.setLocationRelativeTo(null);
         vLista.setVisible(true);
     }
     
@@ -78,18 +85,34 @@ public class CLista {
     }
     
     private void setActionButtons(){
-        vLista.getAbrir().addActionListener(new MyActionListener(vLista.getAbrir(), vLista.getLista()));
-        vLista.getAnadir().addActionListener(new MyActionListener(vLista.getAnadir(), vLista.getLista()));
-        vLista.getEliminar().addActionListener(new MyActionListener(vLista.getEliminar(), vLista.getLista()));
-        vLista.getSync().addActionListener(new MyActionListener(vLista.getSync(), vLista.getLista()));
-        vLista.getGuardar().addActionListener(new MyActionListener(vLista.getGuardar(), vLista.getLista()));
+        vLista.getAbrir().addActionListener(new MyActionListener(vLista.getAbrir(), vLista.getLista(), lista));
+        vLista.getAnadir().addActionListener(new MyActionListener(vLista.getAnadir(), vLista.getLista(), lista));
+        vLista.getEliminar().addActionListener(new MyActionListener(vLista.getEliminar(), vLista.getLista(), lista));
+         vLista.getEditar().addActionListener(new MyActionListener(vLista.getEditar(), vLista.getLista(), lista));
+        vLista.getSync().addActionListener(new MyActionListener(vLista.getSync(), vLista.getLista(), lista));
+        vLista.getGuardar().addActionListener(new MyActionListener(vLista.getGuardar(), vLista.getLista(), lista, vLista));
+        
+        vLista.getLista().addListSelectionListener(new ChangeSelection());
     }
     
     private void setButtonsNames(){
         vLista.getAbrir().setName("abrir");
         vLista.getAnadir().setName("anadir");
         vLista.getEliminar().setName("eliminar");
+         vLista.getEditar().setName("editar");
         vLista.getSync().setName("sync");
         vLista.getGuardar().setName("guardar");
+    }
+    
+    class ChangeSelection implements ListSelectionListener{
+
+        @Override
+        public void valueChanged(ListSelectionEvent e) {
+      
+            if(vLista.getLista().getSelectedIndex() != -1)
+            //obtenemos el item en la posicion seleccionada de la lista y asignamos su cantidad al texto
+            vLista.getCantidad().setText(String.valueOf(lista.getItems().get(vLista.getLista().getSelectedIndex()).getCantidad()));
+        }
+        
     }
 }
