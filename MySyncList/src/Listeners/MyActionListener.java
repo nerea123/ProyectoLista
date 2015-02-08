@@ -46,7 +46,7 @@ public class MyActionListener implements ActionListener{
     private int old_check;
     private static int index;
     private static String get_list = "http://nereadaw.esy.es/get_lists.php";
-    private static String add_list = "http://nereadaw.esy.es/add_list.php";
+    private static String add_list = "http://nereadaw.esy.es/mysynclists.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_SIN_NOMBRE = "Lista sin nombre";
     private static final String TAG_COD = "cod";
@@ -87,7 +87,15 @@ public class MyActionListener implements ActionListener{
                 System.out.println("pulsado abrir");
                 break;
             case "eliminar":
-                System.out.println("pulsado eliminar");
+                int n = JOptionPane.showConfirmDialog(
+                        vista,
+                        "¿Eliminar "+lista.getItems().get(list.getSelectedIndex()).getDescripcion()+"?",
+                        "Eliminar",
+                        JOptionPane.YES_NO_OPTION);
+                if(n==0)
+                    lista.getItems().get(list.getSelectedIndex()).setEliminado(true);
+                 System.out.println("n"+n);   
+                 list.setListData(lista.getItems().toArray());
                 break;
             case "anadir":
                 addAction();
@@ -131,7 +139,6 @@ public class MyActionListener implements ActionListener{
                         lista.getItems().get(index).setCheck_item(new_check);
                         lista.getItems().get(index).setCantidad(Integer.parseInt((String)edit.getCantidad().getSelectedItem()));
                         lista.getItems().get(index).setDescripcion(edit.getNombre().getText());
-                        System.out.println(index);
                         list.setListData(lista.getItems().toArray());
                         lista.setModificada(true);
                     }
@@ -218,11 +225,11 @@ public class MyActionListener implements ActionListener{
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             
-            params.add(new BasicNameValuePair("lista", lista.toString()));//"lista3|cocacola|1|0<ternera|1|0<|agua|2|0<"
-            
-            if(lista.isModificada())
-                params.add(new BasicNameValuePair("update", "si"));
-            System.out.println(params.toString());
+            params.add(new BasicNameValuePair("lista", lista.toJson()));
+            System.out.println("json "+lista.toJson());
+//            if(lista.isModificada())
+//                params.add(new BasicNameValuePair("update", "si"));
+//            System.out.println(params.toString());
 
             // getting product details by making HTTP request
             JSONObject json = jsonParser.makeHttpRequest(

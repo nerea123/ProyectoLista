@@ -7,6 +7,10 @@
 package Modelos;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
@@ -77,7 +81,7 @@ public class Lista {
                 aux +=items.get(i).getCantidad()+"|";
                 aux +=items.get(i).isCheck_item()+"<";
                 if(modificada)
-                    aux +=items.get(i).getCod()+"<";
+                    aux +=items.get(i).getCod()+"<";               
             }
         }
         return aux;
@@ -99,6 +103,18 @@ public class Lista {
      */
     public void setModificada(boolean modificada) {
         this.modificada = modificada;
+    }
+    
+    public String toJson(){
+        JSONObject j = new JSONObject() ;
+        try {
+            j.append("desc", descripcion);
+            j.append("cod", cod);
+            j.append("items", items);
+        } catch (JSONException ex) {
+            Logger.getLogger(Lista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return j.toString();
     }
     
     

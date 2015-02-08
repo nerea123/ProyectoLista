@@ -16,16 +16,19 @@ public class Item {
     private int cantidad;
     private int check_item;
     private boolean cambiado;
+    private boolean eliminado;
 
     public Item(){
-        cambiado = true;
+        cambiado = false;
+        eliminado = false;
     }
     
     public Item(String desc, int cant, int check){
         this.cantidad = cant;
         this.check_item = check;
         this.descripcion = desc;
-        cambiado = true;
+        cambiado = false;
+        eliminado = false;
     }
     
     /**
@@ -96,5 +99,19 @@ public class Item {
      */
     public void setCod(int cod) {
         this.cod = cod;
+    }
+
+    /**
+     * @return the eliminado
+     */
+    public boolean isEliminado() {
+        return eliminado;
+    }
+
+    /**
+     * @param eliminado the eliminado to set
+     */
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
     }
 }
