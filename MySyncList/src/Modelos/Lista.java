@@ -21,10 +21,12 @@ public class Lista {
     private int cod;
     private String descripcion;
     private ArrayList <Item> items;
+    private ArrayList <Item> items_deleted;
     private boolean modificada;
     
     public Lista(){
         items = new ArrayList<>();
+        items_deleted = new ArrayList<>();
         modificada = false;
     }
 
@@ -115,6 +117,32 @@ public class Lista {
             Logger.getLogger(Lista.class.getName()).log(Level.SEVERE, null, ex);
         }
         return j.toString();
+    }
+    
+    public String deletedToJson(){
+        JSONObject j = new JSONObject() ;
+        try {
+            j.append("desc", descripcion);
+            j.append("cod", cod);
+            j.append("items", items_deleted);
+        } catch (JSONException ex) {
+            Logger.getLogger(Lista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return j.toString();
+    }
+
+    /**
+     * @return the items_deleted
+     */
+    public ArrayList <Item> getItems_deleted() {
+        return items_deleted;
+    }
+
+    /**
+     * @param items_deleted the items_deleted to set
+     */
+    public void setItems_deleted(ArrayList <Item> items_deleted) {
+        this.items_deleted = items_deleted;
     }
     
     

@@ -92,8 +92,11 @@ public class MyActionListener implements ActionListener{
                         "¿Eliminar "+lista.getItems().get(list.getSelectedIndex()).getDescripcion()+"?",
                         "Eliminar",
                         JOptionPane.YES_NO_OPTION);
-                if(n==0)
-                    lista.getItems().get(list.getSelectedIndex()).setEliminado(true);
+                if(n==0){
+                    lista.getItems_deleted().add(lista.getItems().get(list.getSelectedIndex()));
+                    lista.getItems().remove(list.getSelectedIndex());
+                    
+                }
                  System.out.println("n"+n);   
                  list.setListData(lista.getItems().toArray());
                 break;
@@ -226,7 +229,10 @@ public class MyActionListener implements ActionListener{
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             
             params.add(new BasicNameValuePair("lista", lista.toJson()));
+            if(lista.getItems_deleted().size() > 0)
+                params.add(new BasicNameValuePair("delete", lista.deletedToJson()));
             System.out.println("json "+lista.toJson());
+            System.out.println("json "+lista.deletedToJson());
 //            if(lista.isModificada())
 //                params.add(new BasicNameValuePair("update", "si"));
 //            System.out.println(params.toString());
@@ -245,6 +251,7 @@ public class MyActionListener implements ActionListener{
 //                     lista.getItems().get(i).setCambiado(false);
 //                 }
                  lista.setModificada(false);
+                 lista.getItems_deleted().clear();
                  JSONArray items = json.getJSONArray(TAG_ITEMS);
 
                 // looping through All Products
