@@ -13,12 +13,14 @@ import Modelos.Lista;
 import Vistas.VAdd;
 import Vistas.VEdit;
 import Vistas.VLista;
+import Vistas.VOpen;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -40,17 +42,21 @@ public class MyActionListener implements ActionListener{
     private Lista lista;
     private VAdd add;
     private VEdit edit;
+    private VOpen open;
     private VLista vista;
     private String old_name;
     private int old_cant;
     private int old_check;
     private static int index;
     private static String get_list = "http://nereadaw.esy.es/get_lists.php";
+    private static String get_list_item = "http://nereadaw.esy.es/get_list_items.php";
     private static String add_list = "http://nereadaw.esy.es/mysynclists.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_SIN_NOMBRE = "Lista sin nombre";
     private static final String TAG_COD = "cod";
     private static final String TAG_ITEMS = "items";
+    private static final String TAG_DESC = "desc";
+    private static ArrayList<Lista> openLists= new ArrayList<>();
     
     public MyActionListener(JButton b, JList list, Lista lista){
         this.button = b;
@@ -78,13 +84,21 @@ public class MyActionListener implements ActionListener{
         this.lista = lista;
         this.vista = vista;
     }
+     
+     public MyActionListener(JButton b, JList list, Lista lista, VLista vista, VOpen open){
+        this.button = b;
+        this.list = list;
+        this.lista = lista;
+        this.vista = vista;
+        this.open = open;
+    }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
         switch(button.getName()){
             case "abrir":
-                System.out.println("pulsado abrir");
+                getIListasRequest();
                 break;
             case "eliminar":
                 int n = JOptionPane.showConfirmDialog(
@@ -115,6 +129,11 @@ public class MyActionListener implements ActionListener{
                 saveAction();
                 break;
             case "nuevo":
+                    lista.setCod(0);
+                    vista.getNomLista().setText("Lista sin nombre");
+                    lista.getItems().clear();
+                    lista.getItems_deleted().clear();
+                    list.setListData(lista.getItems().toArray());
                 break;
             case "aceptarAdd":
                 if(!validateAddAction(add.getNombre()))
@@ -147,6 +166,10 @@ public class MyActionListener implements ActionListener{
                     }
                     edit.dispose();
                 }
+                break;
+            case "aceptarOpen":
+                int cod = open.getListas().getSelectedIndex();
+                getItemsListaRequest(openLists.get(cod).getCod(), openLists.get(cod).getDescripcion());
                 break;
         }
         
@@ -269,5 +292,75 @@ public class MyActionListener implements ActionListener{
         } catch (JSONException e) {
                 e.printStackTrace();
         }
-    }    
+    }
+    
+    public void getItemsListaRequest(int cod, String desc){
+        JSONParser jsonParser = new JSONParser();
+        // Check for success tag
+        int success;
+        try {
+            // Building Parameters
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+
+            params.add(new BasicNameValuePair("cod", String.valueOf(cod)));
+            JSONObject json = jsonParser.makeHttpRequest(
+                            get_list_item , "GET", params);
+            System.out.println("items---"+json.toString());
+            
+            success = json.getInt(TAG_SUCCESS);
+            if (success == 1) {
+                 lista.setCod(cod);
+                 
+                 vista.getNomLista().setText(desc);
+                 lista.getItems().clear();
+                 JSONArray items = json.getJSONArray(TAG_ITEMS);
+
+                // looping through All Products
+                for (int i = 0; i < items.length(); i++) {
+                    JSONObject c = items.getJSONObject(i);
+                    lista.addItem(new Item(c.getString("desc"), c.getInt("cantidad"), c.getInt("check"), c.getInt("cod")));
+                    
+                }
+                openLists.clear();
+                list.setListData(lista.getItems().toArray());
+                open.dispose();
+            }
+        } catch (JSONException e) {
+                e.printStackTrace();
+        }
+    }
+    
+    public void getIListasRequest(){
+        JSONParser jsonParser = new JSONParser();
+        // Check for success tag
+        int success;
+        try {
+            // Building Parameters
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+ 
+            JSONObject json = jsonParser.makeHttpRequest(
+                            get_list , "GET", params);
+            System.out.println(json.toString());
+            
+            success = json.getInt(TAG_SUCCESS);
+            if (success == 1) {
+                 open = new VOpen();
+                 JSONArray items = json.getJSONArray("lista");
+
+                // looping through All Products
+                for (int i = 0; i < items.length(); i++) {
+                    JSONObject c = items.getJSONObject(i);
+                    open.getListas().addItem(c.getString("descripcion"));
+                    openLists.add(new Lista(c.getString("descripcion"), c.getInt("cod")));
+                }
+                open.getAceptar().setName("aceptarOpen");
+                open.getAceptar().addActionListener(new MyActionListener(open.getAceptar(), list, lista, vista, open));
+                open.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                open.setLocationRelativeTo(null);
+                open.setVisible(true);
+            }
+        } catch (JSONException e) {
+                e.printStackTrace();
+        }
+    }
 }

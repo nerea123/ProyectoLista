@@ -32,7 +32,7 @@ public class VLista extends javax.swing.JFrame {
         jToolBar1 = new javax.swing.JToolBar();
         sync = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JToolBar.Separator();
-        jButton2 = new javax.swing.JButton();
+        nuevo = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JToolBar.Separator();
         abrir = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
@@ -64,12 +64,12 @@ public class VLista extends javax.swing.JFrame {
         jSeparator4.setSeparatorSize(new java.awt.Dimension(20, 20));
         jToolBar1.add(jSeparator4);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/new.png"))); // NOI18N
-        jButton2.setToolTipText("Lista nueva");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton2);
+        nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/new.png"))); // NOI18N
+        nuevo.setToolTipText("Lista nueva");
+        nuevo.setFocusable(false);
+        nuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        nuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(nuevo);
 
         jSeparator6.setPreferredSize(new java.awt.Dimension(20, 20));
         jSeparator6.setSeparatorSize(new java.awt.Dimension(20, 20));
@@ -223,7 +223,6 @@ public class VLista extends javax.swing.JFrame {
     private javax.swing.JButton editar;
     private javax.swing.JButton eliminar;
     private javax.swing.JButton guardar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -235,6 +234,7 @@ public class VLista extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JList lista;
     private javax.swing.JLabel nomLista;
+    private javax.swing.JButton nuevo;
     private javax.swing.JButton sync;
     // End of variables declaration//GEN-END:variables
 
@@ -399,5 +399,19 @@ public class VLista extends javax.swing.JFrame {
      */
     public void setEditar(javax.swing.JButton editar) {
         this.editar = editar;
+    }
+
+    /**
+     * @return the nuevo
+     */
+    public javax.swing.JButton getNuevo() {
+        return nuevo;
+    }
+
+    /**
+     * @param nuevo the nuevo to set
+     */
+    public void setNuevo(javax.swing.JButton nuevo) {
+        this.nuevo = nuevo;
     }
 }

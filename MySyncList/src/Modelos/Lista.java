@@ -29,6 +29,14 @@ public class Lista {
         items_deleted = new ArrayList<>();
         modificada = false;
     }
+    
+    public Lista(String desc, int cod){
+        items = new ArrayList<>();
+        items_deleted = new ArrayList<>();
+        modificada = false;
+        this.descripcion = desc;
+        this.cod = cod;
+    }
 
     /**
      * @return the cod

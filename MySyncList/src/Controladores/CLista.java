@@ -33,20 +33,7 @@ public class CLista {
         lista.setCod(0);
         setButtonsNames();
         setActionButtons();
-        Item t = new Item();
-        
-        t.setDescripcion("preba");
-        t.setCantidad(1);
-        t.setCheck_item(1);
-        
-         Item t2 = new Item();
-        
-        t2.setDescripcion("preba2");
-        t2.setCantidad(4);
-        t2.setCheck_item(0);
-        
-        lista.getItems().add(t);
-        lista.getItems().add(t2);
+  
         vLista.getLista().setListData(lista.getItems().toArray());
         vLista.getLista().setCellRenderer(new MyListCellRenderer());
         System.out.println(lista.toJson());
@@ -85,12 +72,13 @@ public class CLista {
     }
     
     private void setActionButtons(){
-        vLista.getAbrir().addActionListener(new MyActionListener(vLista.getAbrir(), vLista.getLista(), lista));
+        vLista.getAbrir().addActionListener(new MyActionListener(vLista.getAbrir(), vLista.getLista(), lista, vLista));
         vLista.getAnadir().addActionListener(new MyActionListener(vLista.getAnadir(), vLista.getLista(), lista));
         vLista.getEliminar().addActionListener(new MyActionListener(vLista.getEliminar(), vLista.getLista(), lista, vLista));
          vLista.getEditar().addActionListener(new MyActionListener(vLista.getEditar(), vLista.getLista(), lista));
         vLista.getSync().addActionListener(new MyActionListener(vLista.getSync(), vLista.getLista(), lista));
         vLista.getGuardar().addActionListener(new MyActionListener(vLista.getGuardar(), vLista.getLista(), lista, vLista));
+        vLista.getNuevo().addActionListener(new MyActionListener(vLista.getNuevo(), vLista.getLista(), lista, vLista));
         
         vLista.getLista().addListSelectionListener(new ChangeSelection());
     }
@@ -102,6 +90,7 @@ public class CLista {
          vLista.getEditar().setName("editar");
         vLista.getSync().setName("sync");
         vLista.getGuardar().setName("guardar");
+        vLista.getNuevo().setName("nuevo");
     }
     
     class ChangeSelection implements ListSelectionListener{

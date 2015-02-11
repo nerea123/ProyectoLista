@@ -31,6 +31,15 @@ public class Item {
         eliminado = false;
     }
     
+    public Item(String desc, int cant, int check, int cod){
+        this.cantidad = cant;
+        this.check_item = check;
+        this.descripcion = desc;
+        this.cod = cod;
+        cambiado = false;
+        eliminado = false;
+    }
+    
     /**
      * @return the descripcion
      */
