@@ -1,0 +1,33 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:yourapp="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.androidsynclist.MainActivity" >
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never"/>
+    
+    <item android:id="@+id/action_open"
+          android:icon="@drawable/open"
+          android:title="abrir"
+          yourapp:showAsAction="ifRoom"/>
+    
+    <item android:id="@+id/action_edit"
+          android:icon="@drawable/edit"
+          android:title="editar" 
+          yourapp:showAsAction="ifRoom"/>
+    
+    <item android:id="@+id/action_del"
+          android:icon="@drawable/del"
+          android:title="eliminar" 
+          yourapp:showAsAction="ifRoom"/>
+    
+    <item android:id="@+id/action_add"
+          android:icon="@drawable/add"
+          android:title="add" 
+          yourapp:showAsAction="ifRoom"/>
+    
+</menu>
